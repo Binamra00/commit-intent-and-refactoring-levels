@@ -76,8 +76,8 @@ with the reason for every type, is `refactoring_levels/refactoring_levels.yaml`.
 ├── levin_classifier/
 │   ├── 01_levin_dataset.ipynb          read and check Levin & Yehudai's dataset
 │   ├── 02_reproduce_levin.ipynb        reproduce their classifiers; fix the train/test split
-│   ├── 03_extract_diffs.ipynb          fetch each labelled commit's diff from GitHub
-│   ├── 03_5_diff_representation.ipynb  how to feed a commit to a 512-token model
+│   ├── 03a_extract_diffs.ipynb         fetch each labelled commit's diff from GitHub
+│   ├── 03b_diff_representation.ipynb   how to feed a commit to a 512-token model
 │   ├── 04a_architecture.ipynb          choose the pooling, encoder frozen
 │   ├── 04b_finetune.ipynb              fine-tune end to end; the only notebook that trains
 │   ├── 04c_calibration.ipynb           temperature scaling and the confidence threshold
@@ -123,7 +123,7 @@ this study's Zenodo record or Hugging Face repository. So each notebook can be r
 |---|---|---|
 | `levin_dataset.pkl` | 01 | re-run 01 (a minute, no GPU) |
 | `levin_columns.json`, `stage2_*_idx.npy` | 01, 02 | `artifacts/` |
-| `levin_with_diffs.jsonl` | 03 (needs a GitHub token) | Zenodo |
+| `levin_with_diffs.jsonl` | 03a (needs a GitHub token) | Zenodo |
 | `model_attention_{42,1337,2024}.pt` | 04b (about 10 hours on an A100) | Hugging Face |
 | `stage4b_results.json` | 04b | `artifacts/` |
 | `refactoring_levels.yaml` | the taxonomy notebook | `refactoring_levels/` |
@@ -135,7 +135,7 @@ this study's Zenodo record or Hugging Face repository. So each notebook can be r
 
 | notebook | needs |
 |---|---|
-| 01, 02, 03, 03.5, 05a, taxonomy | CPU |
+| 01, 02, 03a, 03b, 05a, taxonomy | CPU |
 | 04a | a GPU for about 15 minutes of encoding |
 | 04b | a large GPU; about 10 hours on an 80 GB A100 |
 | 04c | a GPU for a few minutes, or a slow CPU run |
@@ -145,7 +145,7 @@ this study's Zenodo record or Hugging Face repository. So each notebook can be r
 80 GB A100 used here the cap was 256 and no commit was cut; a smaller GPU gets a lower cap and
 may give slightly different numbers. The cap used is recorded in `stage4b_results.json`.
 
-Re-running 03 fetches the diffs from GitHub again. Repositories can rewrite their history, so
+Re-running 03a fetches the diffs from GitHub again. Repositories can rewrite their history, so
 the published `levin_with_diffs.jsonl` is the frozen input the reported results were built from.
 
 ## Data, weights and licences

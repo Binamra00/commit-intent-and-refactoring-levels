@@ -47,7 +47,7 @@ PRODUCED_BY = {
     "levin_columns.json": "levin_classifier/01_levin_dataset.ipynb",
     "stage2_train_idx.npy": "levin_classifier/02_reproduce_levin.ipynb",
     "stage2_test_idx.npy": "levin_classifier/02_reproduce_levin.ipynb",
-    "levin_with_diffs.jsonl": "levin_classifier/03_extract_diffs.ipynb",
+    "levin_with_diffs.jsonl": "levin_classifier/03a_extract_diffs.ipynb",
     "stage4b_results.json": "levin_classifier/04b_finetune.ipynb",
     "stage5a_commits.jsonl": "levin_classifier/05a_assemble.ipynb",
     "refactoring_levels.yaml": "refactoring_levels/refactoring_taxonomy.ipynb",
