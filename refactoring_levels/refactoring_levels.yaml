@@ -1,0 +1,456 @@
+meta:
+  generated: '2026-09-02'
+  types: 107
+  scheme: Murphy-Hill, Parnin & Black, 'How We Refactor, and How We Know It', IEEE TSE 38(1):5-18, 2012,
+    section 3.6
+  distribution_of_types:
+    High: 61
+    Low: 25
+    Medium: 21
+  anchors_reproduced: 18/18
+  contested_with_horikawa:
+    Add Parameter Modifier: Low
+    Encapsulate Attribute: High
+    Extract Class: Medium
+    Extract Subclass: Medium
+    Parameterize Test: High
+    Parameterize Variable: High
+    Remove Parameter Modifier: Low
+    Rename Parameter: Low
+    Split Class: Medium
+  jls_grounded: []
+refactorings:
+- name: Add Attribute Annotation
+  level: High
+  criterion: annotation on a field declaration
+  source: derived
+- name: Add Attribute Modifier
+  level: High
+  criterion: modifier on a field declaration
+  source: derived
+- name: Add Class Annotation
+  level: High
+  criterion: annotation on a class declaration
+  source: derived
+- name: Add Class Modifier
+  level: High
+  criterion: modifier on a class declaration
+  source: derived
+- name: Add Method Annotation
+  level: High
+  criterion: annotation on a method declaration
+  source: derived
+- name: Add Method Modifier
+  level: High
+  criterion: modifier on a method declaration
+  source: derived
+- name: Add Parameter
+  level: High
+  criterion: method signature; callers must change
+  source: murphy_hill_figure_2
+- name: Add Parameter Annotation
+  level: High
+  criterion: annotation within a method signature
+  source: derived
+- name: Add Parameter Modifier
+  level: High
+  criterion: 'Adds or removes `final` on a parameter: the method declaration changes and no block is touched
+    at all. High for the same reason as the other parameter operations.'
+  source: derived
+- name: Add Thrown Exception Type
+  level: High
+  criterion: throws clause is part of the signature
+  source: derived
+- name: Add Variable Annotation
+  level: Low
+  criterion: local variable declaration, inside a method body
+  source: derived
+- name: Add Variable Modifier
+  level: Low
+  criterion: local variable declaration, inside a method body
+  source: derived
+- name: Assert Throws
+  level: Low
+  criterion: rewrites assertion statements inside a test body
+  source: derived
+- name: Assert Timeout
+  level: Low
+  criterion: rewrites assertion statements inside a test body
+  source: derived
+- name: Change Attribute Access Modifier
+  level: High
+  criterion: field visibility, part of the declaration
+  source: derived
+- name: Change Attribute Type
+  level: Medium
+  criterion: declaration changes and every use site in a block must follow
+  source: derived
+- name: Change Class Access Modifier
+  level: High
+  criterion: class visibility, part of the declaration
+  source: derived
+- name: Change Method Access Modifier
+  level: High
+  criterion: method visibility, part of the declaration
+  source: murphy_hill_figure_2
+- name: Change Parameter Type
+  level: Medium
+  criterion: signature changes and the body using it must follow
+  source: derived
+- name: Change Return Type
+  level: Medium
+  criterion: signature changes and return statements must follow
+  source: derived
+- name: Change Thrown Exception Type
+  level: High
+  criterion: throws clause is part of the signature
+  source: derived
+- name: Change Type Declaration Kind
+  level: High
+  criterion: class becomes interface or enum; the declaration itself
+  source: derived
+- name: Change Variable Type
+  level: Low
+  criterion: local variable declaration, inside a method body
+  source: derived
+- name: Collapse Hierarchy
+  level: High
+  criterion: merges two type declarations; member bodies unchanged
+  source: derived
+- name: Encapsulate Attribute
+  level: Medium
+  criterion: adds accessor signatures AND rewrites every block that touched the field
+  source: derived
+- name: Extract Attribute
+  level: Medium
+  criterion: creates a field declaration by lifting an expression out of a block
+  source: derived
+- name: Extract Class
+  level: High
+  criterion: creates a class and relocates whole members; no block is rewritten
+  source: murphy_hill_figure_2
+- name: Extract Fixture
+  level: Medium
+  criterion: creates a setup method and moves block content into it
+  source: derived
+- name: Extract Interface
+  level: High
+  criterion: creates a type declaration from existing signatures
+  source: derived
+- name: Extract Method
+  level: Medium
+  criterion: creates a method signature and moves a block into it
+  source: murphy_hill_figure_2
+- name: Extract Subclass
+  level: High
+  criterion: creates a type declaration and relocates whole members
+  source: derived
+- name: Extract Superclass
+  level: High
+  criterion: creates a type declaration and relocates whole members
+  source: derived
+- name: Extract Variable
+  level: Low
+  criterion: introduces a local within a block
+  source: murphy_hill_figure_2
+- name: Extract and Move Method
+  level: Medium
+  criterion: creates a method signature, moves a block, relocates the result
+  source: derived
+- name: Inline Attribute
+  level: Medium
+  criterion: removes a field declaration and rewrites the blocks that used it
+  source: derived
+- name: Inline Method
+  level: Medium
+  criterion: removes a method signature and folds its block into callers
+  source: murphy_hill_figure_2
+- name: Inline Variable
+  level: Low
+  criterion: removes a local within a block
+  source: murphy_hill_figure_2
+- name: Invert Condition
+  level: Low
+  criterion: rewrites a conditional expression
+  source: derived
+- name: Localize Parameter
+  level: Medium
+  criterion: removes a parameter from the signature and adds a local in the block
+  source: derived
+- name: Merge Attribute
+  level: High
+  criterion: combines field declarations
+  source: derived
+- name: Merge Catch
+  level: Low
+  criterion: combines catch blocks
+  source: derived
+- name: Merge Class
+  level: High
+  criterion: combines type declarations; member bodies unchanged
+  source: derived
+- name: Merge Conditional
+  level: Low
+  criterion: combines conditional statements
+  source: derived
+- name: Merge Method
+  level: Medium
+  criterion: removes method signatures and merges their blocks
+  source: derived
+- name: Merge Package
+  level: High
+  criterion: package declarations only
+  source: derived
+- name: Merge Parameter
+  level: High
+  criterion: method signature
+  source: derived
+- name: Merge Variable
+  level: Low
+  criterion: combines locals within a block
+  source: derived
+- name: Modify Attribute Annotation
+  level: High
+  criterion: annotation on a field declaration
+  source: derived
+- name: Modify Class Annotation
+  level: High
+  criterion: annotation on a class declaration
+  source: derived
+- name: Modify Method Annotation
+  level: High
+  criterion: annotation on a method declaration
+  source: derived
+- name: Modify Parameter Annotation
+  level: High
+  criterion: annotation within a method signature
+  source: derived
+- name: Modify Variable Annotation
+  level: Low
+  criterion: local variable declaration, inside a method body
+  source: derived
+- name: Move Annotation
+  level: High
+  criterion: relocates an annotation between declarations
+  source: derived
+- name: Move Attribute
+  level: High
+  criterion: relocates a field declaration
+  source: murphy_hill_figure_2
+- name: Move Class
+  level: High
+  criterion: relocates a type declaration
+  source: derived
+- name: Move Code
+  level: Low
+  criterion: relocates statements within or between bodies
+  source: derived
+- name: Move Method
+  level: High
+  criterion: relocates a whole method; its body is unchanged
+  source: murphy_hill_figure_2
+- name: Move Package
+  level: High
+  criterion: relocates a package declaration
+  source: derived
+- name: Move Source Folder
+  level: High
+  criterion: relocates a source folder, moving whole package and type declarations; no block is rewritten
+  source: derived
+- name: Move and Inline Method
+  level: Medium
+  criterion: relocates a method then folds its block into the call site
+  source: derived
+- name: Move and Rename Attribute
+  level: High
+  criterion: relocates and renames a field declaration
+  source: derived
+- name: Move and Rename Class
+  level: High
+  criterion: relocates and renames a type declaration
+  source: derived
+- name: Move and Rename Method
+  level: High
+  criterion: relocates and renames a whole method
+  source: derived
+- name: Parameterize Attribute
+  level: Medium
+  criterion: replaces a field with a parameter; signature and block both change
+  source: derived
+- name: Parameterize Test
+  level: Medium
+  criterion: adds a parameterised signature and rewrites the test body
+  source: derived
+- name: Parameterize Variable
+  level: Medium
+  criterion: promotes a local to a parameter; signature and block both change
+  source: murphy_hill_figure_2
+- name: Pull Up Attribute
+  level: High
+  criterion: relocates a field declaration up the hierarchy
+  source: derived
+- name: Pull Up Method
+  level: High
+  criterion: relocates a whole method up the hierarchy
+  source: derived
+- name: Push Down Attribute
+  level: High
+  criterion: relocates a field declaration down the hierarchy
+  source: murphy_hill_figure_2
+- name: Push Down Method
+  level: High
+  criterion: relocates a whole method down the hierarchy
+  source: murphy_hill_figure_2
+- name: Remove Attribute Annotation
+  level: High
+  criterion: annotation on a field declaration
+  source: derived
+- name: Remove Attribute Modifier
+  level: High
+  criterion: modifier on a field declaration
+  source: derived
+- name: Remove Class Annotation
+  level: High
+  criterion: annotation on a class declaration
+  source: derived
+- name: Remove Class Modifier
+  level: High
+  criterion: modifier on a class declaration
+  source: derived
+- name: Remove Method Annotation
+  level: High
+  criterion: annotation on a method declaration
+  source: derived
+- name: Remove Method Modifier
+  level: High
+  criterion: modifier on a method declaration
+  source: derived
+- name: Remove Parameter
+  level: High
+  criterion: method signature; callers must change
+  source: murphy_hill_figure_2
+- name: Remove Parameter Annotation
+  level: High
+  criterion: annotation within a method signature
+  source: derived
+- name: Remove Parameter Modifier
+  level: High
+  criterion: 'Adds or removes `final` on a parameter: the method declaration changes and no block is touched
+    at all. High for the same reason as the other parameter operations.'
+  source: derived
+- name: Remove Thrown Exception Type
+  level: High
+  criterion: throws clause is part of the signature
+  source: derived
+- name: Remove Variable Annotation
+  level: Low
+  criterion: local variable declaration, inside a method body
+  source: derived
+- name: Remove Variable Modifier
+  level: Low
+  criterion: local variable declaration, inside a method body
+  source: derived
+- name: Rename Attribute
+  level: High
+  criterion: field declaration; references must change
+  source: murphy_hill_figure_2
+- name: Rename Class
+  level: High
+  criterion: type declaration; references must change
+  source: murphy_hill_figure_2
+- name: Rename Method
+  level: High
+  criterion: method declaration; callers must change
+  source: murphy_hill_figure_2
+- name: Rename Package
+  level: High
+  criterion: package declaration
+  source: derived
+- name: Rename Parameter
+  level: High
+  criterion: Murphy-Hill's Low level requires changes to ONLY blocks of code, and this changes the method
+    declaration line. Medium requires blocks to be SIGNIFICANTLY changed, and a rename is identifier substitution.
+    By elimination, High -- consistent with Add, Remove and Reorder Parameter, all marked High in Figure
+    2.
+  source: derived
+- name: Rename Variable
+  level: Low
+  criterion: local identifier, invisible outside the method
+  source: murphy_hill_figure_2
+- name: Reorder Parameter
+  level: High
+  criterion: method signature; callers must change
+  source: murphy_hill_figure_2
+- name: Replace Anonymous with Class
+  level: Medium
+  criterion: creates a type declaration and rewrites the block that held it
+  source: derived
+- name: Replace Anonymous with Lambda
+  level: Low
+  criterion: rewrites an expression inside a block
+  source: derived
+- name: Replace Attribute
+  level: Medium
+  criterion: substitutes one field declaration for another; every block referencing it must be rewritten
+    to handle the new type or semantics, the same consequence that places Change Attribute Type at Medium
+  source: derived
+- name: Replace Attribute with Variable
+  level: Medium
+  criterion: removes a field declaration, adds a local in the block
+  source: derived
+- name: Replace Conditional With Ternary
+  level: Low
+  criterion: rewrites a conditional expression
+  source: derived
+- name: Replace Conditional with Assumption
+  level: Low
+  criterion: rewrites a conditional statement in a test body
+  source: derived
+- name: Replace Generic With Diamond
+  level: Low
+  criterion: rewrites a type argument in an expression
+  source: derived
+- name: Replace Loop with Pipeline
+  level: Low
+  criterion: rewrites a loop as a stream expression
+  source: derived
+- name: Replace Pipeline with Loop
+  level: Low
+  criterion: rewrites a stream expression as a loop
+  source: derived
+- name: Replace Variable with Attribute
+  level: Medium
+  criterion: adds a field declaration, removes a local from the block
+  source: derived
+- name: Split Attribute
+  level: High
+  criterion: one field declaration becomes several
+  source: derived
+- name: Split Class
+  level: High
+  criterion: one type declaration becomes several; whole members relocate
+  source: derived
+- name: Split Conditional
+  level: Low
+  criterion: divides a conditional statement
+  source: derived
+- name: Split Method
+  level: Medium
+  criterion: one signature becomes several, and the block is divided among them
+  source: derived
+- name: Split Package
+  level: High
+  criterion: one package declaration becomes several
+  source: derived
+- name: Split Parameter
+  level: High
+  criterion: method signature
+  source: derived
+- name: Split Variable
+  level: Low
+  criterion: one local becomes several within a block
+  source: derived
+- name: Try With Resources
+  level: Low
+  criterion: restructures a try statement
+  source: derived
