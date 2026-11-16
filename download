@@ -1,0 +1,8 @@
+# the working folder: every notebook's inputs and outputs
+work/
+# trained weights live on Hugging Face, data on Zenodo
+*.pt
+*.part
+__pycache__/
+.ipynb_checkpoints/
+.venv/

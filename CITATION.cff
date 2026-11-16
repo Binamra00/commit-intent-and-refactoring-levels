@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+title: "Commit Intent and Refactoring Levels: a fine-tuned CodeBERT commit classifier and a Murphy-Hill level mapping for RefactoringMiner"
+authors:
+  - family-names: Aryal
+    given-names: Binamra
+    affiliation: "University of Texas at Arlington"
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/Binamra00/commit-intent-and-refactoring-levels"
+keywords:
+  - mining software repositories
+  - commit classification
+  - maintenance activities
+  - CodeBERT
+  - refactoring
+  - RefactoringMiner
