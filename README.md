@@ -86,7 +86,6 @@ with the reason for every type, is `refactoring_levels/refactoring_levels.yaml`.
 ├── refactoring_levels/
 │   ├── refactoring_taxonomy.ipynb      the mapping and its three checks
 │   └── refactoring_levels.yaml         the mapping itself, read by 05a
-└── artifacts/                  small outputs committed so any stage can start on its own
 ```
 
 ## Running the notebooks
@@ -116,16 +115,16 @@ clones the repository and mounts Drive.
 
 ### You do not have to start at the beginning
 
-If an input is missing from `WORK`, the notebook copies it from `artifacts/` or downloads it from
-this study's Zenodo record or Hugging Face repository. So each notebook can be run on its own:
+If an input is missing from `WORK`, the notebook downloads it from this study's Zenodo record or
+Hugging Face repository. So each notebook can be run on its own:
 
 | file | written by | otherwise comes from |
 |---|---|---|
 | `levin_dataset.pkl` | 01 | re-run 01 (a minute, no GPU) |
-| `levin_columns.json`, `stage2_*_idx.npy` | 01, 02 | `artifacts/` |
+| `levin_columns.json`, `stage2_*_idx.npy` | 01, 02 | Zenodo |
 | `levin_with_diffs.jsonl` | 03a (needs a GitHub token) | Zenodo |
 | `model_attention_{42,1337,2024}.pt` | 04b (about 10 hours on an A100) | Hugging Face |
-| `stage4b_results.json` | 04b | `artifacts/` |
+| `stage4b_results.json` | 04b | Zenodo |
 | `refactoring_levels.yaml` | the taxonomy notebook | `refactoring_levels/` |
 | the thesis corpus | — | Zenodo record 24182007, downloaded by 05a and the taxonomy notebook |
 | `stage5a_commits.jsonl` | 05a (minutes, no GPU) | re-run 05a |
@@ -154,11 +153,23 @@ the published `levin_with_diffs.jsonl` is the frozen input the reported results 
 |---|---|
 | Levin & Yehudai's labelled commits | [10.5281/zenodo.835534](https://doi.org/10.5281/zenodo.835534), downloaded by 01 |
 | The five-repository corpus | [10.5281/zenodo.24182007](https://doi.org/10.5281/zenodo.24182007) |
-| This study's inputs and outputs | Zenodo: TODO |
+| This study's inputs, stage outputs and `dataset_a.csv` | Zenodo: TODO |
 | Trained weights | Hugging Face: TODO |
 
 The code is under the MIT licence. The diffs and commit messages come from the projects
 concerned and remain under their own licences.
+
+## Acknowledgements
+
+The five-repository corpus that `05a_assemble` and the taxonomy notebook read (commits, commit
+messages, changed lines, refactorings, issues, pull requests, and the links between them) was mined
+with [Quarry](https://github.com/Binamra00/quarry), the mining tool built for the author's M.S.
+thesis, and is published as [10.5281/zenodo.24182007](https://doi.org/10.5281/zenodo.24182007).
+Quarry detects refactorings with RefactoringMiner 3.1.3.
+
+The labelled commits are Levin & Yehudai's; `03a_extract_diffs` fetched their diffs from the GitHub
+API. The pretrained encoder is Microsoft's CodeBERT. The level mapping is cross-checked against the
+mapping Horikawa et al. published with arXiv:2511.04824.
 
 ## Citing
 
@@ -169,5 +180,6 @@ builds on:
   By Utilizing Source Code Changes.* PROMISE 2017.
 - E. Murphy-Hill, C. Parnin and A. P. Black. *How We Refactor, and How We Know It.* IEEE TSE
   38(1):5–18, 2012.
+- N. Tsantalis, A. Ketkar and D. Dig. *RefactoringMiner 2.0.* IEEE TSE 48(3):930–950, 2022.
 - Z. Feng et al. *CodeBERT: A Pre-Trained Model for Programming and Natural Languages.*
   Findings of EMNLP 2020.

@@ -12,8 +12,8 @@ Each notebook's first cell imports this module and calls `setup()`. That does th
 3. Prints where things are, so a reader can see what will be read and written.
 
 `require(name)` returns the path of an input in WORK. If the file is not there yet, it is copied
-from the repository (small files committed under artifacts/ and refactoring_levels/) or downloaded
-from this study's Zenodo record or Hugging Face model repository. That is what lets a reader start
+from the repository (refactoring_levels/refactoring_levels.yaml) or downloaded from this study's
+Zenodo record or Hugging Face model repository. That is what lets a reader start
 at any stage without re-running the ones before it.
 """
 
@@ -34,11 +34,18 @@ STUDY_ZENODO_RECORD = None         # TODO: this study's record, e.g. "24xxxxxx"
 HF_MODEL_REPO = None               # TODO: e.g. "Binamra00/codebert-commit-intent"
 
 ROOT = Path(__file__).resolve().parent
-COMMITTED = [ROOT / "artifacts", ROOT / "refactoring_levels"]
+COMMITTED = [ROOT / "refactoring_levels"]
 
-# Files too large for git, and where they are published.
-ON_ZENODO = {"levin_with_diffs.jsonl", "stage5_logits.jsonl", "dataset_a.csv",
-             "dataset_a_meta.json"}
+# What each published record holds. Every file is uploaded on its own, not zipped, so it can be
+# downloaded by name.
+ON_ZENODO = {
+    # inputs and outputs too large for git
+    "levin_with_diffs.jsonl", "stage5_logits.jsonl", "dataset_a.csv", "dataset_a_meta.json",
+    # small stage outputs, so any notebook can start without re-running the ones before it
+    "levin_columns.json", "stage2_train_idx.npy", "stage2_test_idx.npy", "stage2_summary.json",
+    "stage3_summary.json", "stage35_decision.json", "stage4a_decision.json",
+    "stage4b_results.json", "stage4c_calibration.json", "stage5a_meta.json",
+}
 ON_HUGGING_FACE = {f"model_attention_{s}.pt" for s in (42, 1337, 2024)}
 
 # Which notebook writes each file, for the error message when one is missing.
@@ -100,7 +107,7 @@ def require(name, optional=False):
     """
     Path to `name` in WORK, fetching it first if needed.
 
-    Order: already in WORK -> committed in the repository -> this study's Zenodo record ->
+    Order: already in WORK -> refactoring_levels/ in the repository -> this study's Zenodo record ->
     Hugging Face. With optional=True a missing file returns None instead of stopping.
     """
     if WORK is None:
