@@ -93,7 +93,7 @@ weights and call `predict(message, {path: patch})`.
 │   ├── refactoring_taxonomy.ipynb      the mapping and its three checks
 │   └── refactoring_levels.yaml         the mapping itself, read by 05a
 └── huggingface/
-    ├── publish_weights.ipynb           converts 04b's weights to safetensors, checks, uploads
+    ├── prepare_upload.py               converts 04b's weights to safetensors and checks them
     ├── MODEL_CARD.md                   published as the model repository's README
     ├── config.json
     └── commit_intent.py                the architecture and an inference wrapper
@@ -157,6 +157,23 @@ may give slightly different numbers. The cap used is recorded in `stage4b_result
 
 Re-running 03a fetches the diffs from GitHub again. Repositories can rewrite their history, so
 the published `levin_with_diffs.jsonl` is the frozen input the reported results were built from.
+
+## Publishing the weights
+
+`04b_finetune` saves each model as `model_attention_<seed>.pt`. To publish them:
+
+```bash
+# the three .pt files go in huggingface/
+python huggingface/prepare_upload.py --check
+hf upload Binamra00/codebert-commit-intent huggingface/hf_upload . \
+  --commit-message "Safetensors weights, model card, config and inference code"
+```
+
+`prepare_upload.py` converts each model to safetensors and checks that every tensor reads back
+identical. It then assembles `huggingface/hf_upload/` with the model card and inference code. With
+`--check` it also re-scores the 173 test commits through the published inference code and
+compares them with what `04b_finetune` reported. `hf upload` needs a Hugging Face token with write
+access in the `HF_TOKEN` environment variable.
 
 ## Data, weights and licences
 
