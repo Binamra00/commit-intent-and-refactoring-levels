@@ -82,7 +82,7 @@ with the reason for every type, is `refactoring_levels/refactoring_levels.yaml`.
 │   ├── 04b_finetune.ipynb              fine-tune end to end; the only notebook that trains
 │   ├── 04c_calibration.ipynb           temperature scaling and the confidence threshold
 │   ├── 05a_assemble.ipynb              build one record per corpus commit (no GPU)
-│   └── 05b_classify.ipynb              classify, calibrate, check, write dataset_a.csv
+│   └── 05b_classify.ipynb              classify, calibrate, check, write dataset.csv
 ├── refactoring_levels/
 │   ├── refactoring_taxonomy.ipynb      the mapping and its three checks
 │   └── refactoring_levels.yaml         the mapping itself, read by 05a
@@ -153,7 +153,7 @@ the published `levin_with_diffs.jsonl` is the frozen input the reported results 
 |---|---|
 | Levin & Yehudai's labelled commits | [10.5281/zenodo.835534](https://doi.org/10.5281/zenodo.835534), downloaded by 01 |
 | The five-repository corpus | [10.5281/zenodo.24182007](https://doi.org/10.5281/zenodo.24182007) |
-| This study's inputs, stage outputs and `dataset_a.csv` | Zenodo: TODO |
+| This study's inputs, stage outputs and `dataset.csv` | [10.5281/zenodo.24295072](https://doi.org/10.5281/zenodo.24295072) |
 | Trained weights | Hugging Face: TODO |
 
 The code is under the MIT licence. The diffs and commit messages come from the projects

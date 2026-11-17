@@ -30,7 +30,7 @@ from pathlib import Path
 GITHUB_REPO = "https://github.com/Binamra00/commit-intent-and-refactoring-levels"
 LEVIN_ZENODO_RECORD = "835534"     # Levin & Yehudai's labelled commits (their record)
 CORPUS_ZENODO_RECORD = "24182007"  # the five-repository corpus mined for the thesis
-STUDY_ZENODO_RECORD = None         # TODO: this study's record, e.g. "24xxxxxx"
+STUDY_ZENODO_RECORD = "24295072"   # this study: doi.org/10.5281/zenodo.24295072
 HF_MODEL_REPO = None               # TODO: e.g. "Binamra00/codebert-commit-intent"
 
 ROOT = Path(__file__).resolve().parent
@@ -40,10 +40,10 @@ COMMITTED = [ROOT / "refactoring_levels"]
 # downloaded by name.
 ON_ZENODO = {
     # inputs and outputs too large for git
-    "levin_with_diffs.jsonl", "stage5_logits.jsonl", "dataset_a.csv", "dataset_a_meta.json",
+    "levin_with_diffs.jsonl", "stage5_logits.jsonl", "dataset.csv", "dataset_meta.json",
     # small stage outputs, so any notebook can start without re-running the ones before it
     "levin_columns.json", "stage2_train_idx.npy", "stage2_test_idx.npy", "stage2_summary.json",
-    "stage3_summary.json", "stage35_decision.json", "stage4a_decision.json",
+    "stage3_summary.json", "stage3b_decision.json", "stage4a_decision.json",
     "stage4b_results.json", "stage4c_calibration.json", "stage5a_meta.json",
 }
 ON_HUGGING_FACE = {f"model_attention_{s}.pt" for s in (42, 1337, 2024)}
