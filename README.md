@@ -68,6 +68,12 @@ contract. Moving all nine to the other reading shifts the corpus-wide high share
 and commons-lang's by 16.2, so level-dependent results should be reported both ways. The mapping,
 with the reason for every type, is `refactoring_levels/refactoring_levels.yaml`.
 
+## Using the classifier
+
+To classify your own commits you do not need this repository: the model card on
+[Hugging Face](https://huggingface.co/Binamra00/codebert-commit-intent) shows how to load the
+weights and call `predict(message, {path: patch})`.
+
 ## Repository layout
 
 ```
@@ -86,6 +92,11 @@ with the reason for every type, is `refactoring_levels/refactoring_levels.yaml`.
 ├── refactoring_levels/
 │   ├── refactoring_taxonomy.ipynb      the mapping and its three checks
 │   └── refactoring_levels.yaml         the mapping itself, read by 05a
+└── huggingface/
+    ├── publish_weights.ipynb           converts 04b's weights to safetensors, checks, uploads
+    ├── MODEL_CARD.md                   published as the model repository's README
+    ├── config.json
+    └── commit_intent.py                the architecture and an inference wrapper
 ```
 
 ## Running the notebooks
@@ -123,7 +134,7 @@ Hugging Face repository. So each notebook can be run on its own:
 | `levin_dataset.pkl` | 01 | re-run 01 (a minute, no GPU) |
 | `levin_columns.json`, `stage2_*_idx.npy` | 01, 02 | Zenodo |
 | `levin_with_diffs.jsonl` | 03a (needs a GitHub token) | Zenodo |
-| `model_attention_{42,1337,2024}.pt` | 04b (about 10 hours on an A100) | Hugging Face |
+| `model_attention_{42,1337,2024}` weights | 04b, as `.pt` (about 10 hours on an A100) | Hugging Face, as `.safetensors` |
 | `stage4b_results.json` | 04b | Zenodo |
 | `refactoring_levels.yaml` | the taxonomy notebook | `refactoring_levels/` |
 | the thesis corpus | — | Zenodo record 24182007, downloaded by 05a and the taxonomy notebook |
@@ -154,7 +165,7 @@ the published `levin_with_diffs.jsonl` is the frozen input the reported results 
 | Levin & Yehudai's labelled commits | [10.5281/zenodo.835534](https://doi.org/10.5281/zenodo.835534), downloaded by 01 |
 | The five-repository corpus | [10.5281/zenodo.24182007](https://doi.org/10.5281/zenodo.24182007) |
 | This study's inputs, stage outputs and `dataset.csv` | [10.5281/zenodo.24295072](https://doi.org/10.5281/zenodo.24295072) |
-| Trained weights | Hugging Face: TODO |
+| Trained weights, model card and inference code | [huggingface.co/Binamra00/codebert-commit-intent](https://huggingface.co/Binamra00/codebert-commit-intent) |
 
 The code is under the MIT licence. The diffs and commit messages come from the projects
 concerned and remain under their own licences.

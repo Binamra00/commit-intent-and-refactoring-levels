@@ -24,14 +24,14 @@ import urllib.request
 from pathlib import Path
 
 # --------------------------------------------------------------------------------------------
-# Where the published pieces live. Fill in the two TODOs once the Zenodo DOI is reserved and the
-# Hugging Face repository exists; nothing else in the repository needs to change.
+# Where the published pieces live. If they move, change these lines; nothing else in the
+# repository needs to change.
 # --------------------------------------------------------------------------------------------
 GITHUB_REPO = "https://github.com/Binamra00/commit-intent-and-refactoring-levels"
 LEVIN_ZENODO_RECORD = "835534"     # Levin & Yehudai's labelled commits (their record)
 CORPUS_ZENODO_RECORD = "24182007"  # the five-repository corpus mined for the thesis
 STUDY_ZENODO_RECORD = "24295072"   # this study: doi.org/10.5281/zenodo.24295072
-HF_MODEL_REPO = None               # TODO: e.g. "Binamra00/codebert-commit-intent"
+HF_MODEL_REPO = "Binamra00/codebert-commit-intent"
 
 ROOT = Path(__file__).resolve().parent
 COMMITTED = [ROOT / "refactoring_levels"]
@@ -46,7 +46,7 @@ ON_ZENODO = {
     "stage3_summary.json", "stage3b_decision.json", "stage4a_decision.json",
     "stage4b_results.json", "stage4c_calibration.json", "stage5a_meta.json",
 }
-ON_HUGGING_FACE = {f"model_attention_{s}.pt" for s in (42, 1337, 2024)}
+ON_HUGGING_FACE = {f"model_attention_{s}.safetensors" for s in (42, 1337, 2024)}
 
 # Which notebook writes each file, for the error message when one is missing.
 PRODUCED_BY = {
@@ -59,6 +59,7 @@ PRODUCED_BY = {
     "stage5a_commits.jsonl": "levin_classifier/05a_assemble.ipynb",
     "refactoring_levels.yaml": "refactoring_levels/refactoring_taxonomy.ipynb",
     **{n: "levin_classifier/04b_finetune.ipynb" for n in ON_HUGGING_FACE},
+    **{n.replace(".safetensors", ".pt"): "levin_classifier/04b_finetune.ipynb" for n in ON_HUGGING_FACE},
 }
 
 WORK = None
@@ -139,3 +140,21 @@ def require(name, optional=False):
                      + (f" -- run {hint} first" if hint else "")
                      + (" or set STUDY_ZENODO_RECORD / HF_MODEL_REPO in replication.py"
                         if name in ON_ZENODO | ON_HUGGING_FACE else ""))
+
+
+def load_weights(stem, device="cpu"):
+    """
+    State dict of a trained classifier, e.g. load_weights("model_attention_2024").
+
+    Uses <stem>.pt if 04b_finetune wrote it to WORK (your own training run), otherwise the
+    published <stem>.safetensors from Hugging Face. Both hold the same tensors.
+    """
+    import torch
+    pt = WORK / f"{stem}.pt"
+    if pt.exists():
+        print(f"   weights: {pt.name} (trained in WORK)")
+        return torch.load(pt, map_location=device)
+    from safetensors.torch import load_file
+    path = require(f"{stem}.safetensors")
+    print(f"   weights: {path.name}")
+    return load_file(path, device=str(device))
