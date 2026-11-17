@@ -2,6 +2,8 @@
 work/
 # trained weights live on Hugging Face, data on Zenodo
 *.pt
+*.safetensors
+huggingface/hf_upload/
 *.part
 __pycache__/
 .ipynb_checkpoints/
